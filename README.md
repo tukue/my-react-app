@@ -59,3 +59,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+#####
+deploying react app using aws amplify
+
+amplify init: This command initializes a new Amplify project in your React app. It creates a new directory called 'amplify' in your project root, which contains configuration files for your AWS resources.
+
+amplify add hosting: This sets up hosting for your application. When you choose CloudFront and S3, it creates an S3 bucket to store your static files and sets up a CloudFront distribution to serve these files with low latency.
+
+amplify publish: This command does several things:
+
+It builds your React application (similar to running npm run build)
+
+It uploads the built files to the S3 bucket created earlier
+
+It updates the CloudFront distribution to serve the new files
+
+It provides you with a URL where your app is now accessible
+
