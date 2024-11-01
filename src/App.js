@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import logo from './logo.svg';
+import { generateClient } from 'aws-amplify/api';
+import config from './amplifyconfiguration.json';
+import { Amplify } from 'aws-amplify';
 import './App.css';
+
+Amplify.configure(config);
+
+const client = generateClient();
 
 // Placeholder components
 const Home = () => (
@@ -26,22 +33,34 @@ const About = () => <h2>About Us</h2>;
 
 // Updated Courses component
 const Courses = () => {
-  const courseList = [
-    { id: 1, name: "React Basics", description: "Learn the fundamentals of React", image: "https://via.placeholder.com/150" },
-    { id: 2, name: "Advanced JavaScript", description: "Master advanced JS concepts", image: "https://via.placeholder.com/150" },
-    { id: 3, name: "AWS Fundamentals", description: "Get started with Amazon Web Services", image: "https://via.placeholder.com/150" },
-  ];
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
+  async function fetchCourses() {
+    try {
+      const coursesData = await client.models.Course.list();
+      setCourses(coursesData);
+    } catch (error) {
+      console.error("Error fetching courses", error);
+    }
+  }
 
   return (
     <div className="courses-container">
       <h2>Our Courses</h2>
       <div className="course-list">
-        {courseList.map(course => (
+        {courses.map(course => (
           <div key={course.id} className="course-card">
-            <img src={course.image} alt={course.name} className="course-image" />
+            <img src={course.image} alt={course.title} className="course-image" />
             <div className="course-info">
-              <h3>{course.name}</h3>
+              <h3>{course.title}</h3>
               <p>{course.description}</p>
+              <p>Instructor: {course.instructor}</p>
+              <p>Duration: {course.duration} hours</p>
+              <p>Level: {course.level}</p>
               <button className="enroll-button">Enroll Now</button>
             </div>
           </div>
