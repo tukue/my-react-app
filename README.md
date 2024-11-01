@@ -70,10 +70,18 @@ amplify add hosting: This sets up hosting for your application. When you choose 
 amplify publish: This command does several things:
 
 It builds your React application (similar to running npm run build)
-
 It uploads the built files to the S3 bucket created earlier
-
 It updates the CloudFront distribution to serve the new files
+It provides you with a URL where your app is now accessible  
 
-It provides you with a URL where your app is now accessible
+redeploying application after front end updates: 
+top update hosted web app :
+npm run build
+upload new build to s3 bucket and invalidate cloudfoemation cache
+aws s3 sync build/ s3://your-bucket-name --delete 
+aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
+
+
+
+
 
