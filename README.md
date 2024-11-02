@@ -79,7 +79,29 @@ top update hosted web app :
 npm run build
 upload new build to s3 bucket and invalidate cloudfoemation cache
 aws s3 sync build/ s3://your-bucket-name --delete 
-aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
+aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*" 
+
+# React App
+
+## Architecture Overview
+
+ React application is built using AWS Amplify, providing a scalable and serverless architecture.
+
+ 
+### Key Components:
+
+1. **Frontend**: React application with Amplify library
+2. **API**: AWS AppSync (GraphQL)
+3. **Database**: Amazon DynamoDB
+4. **Auth**: AWS Cognito
+5. **Storage**: AWS S3 (for static assets)
+
+The frontend communicates with AppSync via GraphQL, which interacts with DynamoDB for data operations. Cognito handles authentication, and S3 manages file storage.
+
+
+
+
+
 
 
 
