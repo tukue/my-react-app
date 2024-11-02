@@ -1,6 +1,15 @@
 {
   "api": {
     "amplifyDatasource": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "myreactappc45192c5"
+        }
+      ],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [
@@ -14,11 +23,10 @@
             }
           ],
           "defaultAuthentication": {
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7,
-              "description": ""
-            },
-            "authenticationType": "API_KEY"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authmyreactappc45192c5"
+            }
           }
         }
       },
@@ -52,6 +60,22 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    },
+    "userPoolGroups": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "myreactappc45192c5"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito-UserPool-Groups"
     }
   },
   "function": {
@@ -65,6 +89,24 @@
     "S3AndCloudFront": {
       "providerPlugin": "awscloudformation",
       "service": "S3AndCloudFront"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_fetchCourses_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "fetchCourses"
+        }
+      ]
+    },
+    "AMPLIFY_function_fetchCourses_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "fetchCourses"
+        }
+      ]
     }
   }
 }

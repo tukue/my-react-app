@@ -1,5 +1,12 @@
 {
   "AppSyncApiName": "amplifyDatasource",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": "false"
+  "DynamoDBEnableServerSideEncryption": "false",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authmyreactappc45192c5",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2024-11-02T13:43:48.748Z"
 }

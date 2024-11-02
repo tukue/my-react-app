@@ -10,6 +10,37 @@ Amplify.configure(config);
 
 const client = generateClient();
 
+// Test courses data
+const testCourses = [
+  {
+    id: '1',
+    title: 'Introduction to React',
+    description: 'Learn the basics of React',
+    instructor: '',
+    duration: 30,
+    level: 'Beginner',
+    image: 'https://via.placeholder.com/150'
+  },
+  {
+    id: '2',
+    title: 'Advanced JavaScript',
+    description: 'Deep dive into JavaScript concepts',
+    instructor: '',
+    duration: 45,
+    level: 'Advanced',
+    image: 'https://via.placeholder.com/150'
+  },
+  {
+    id: '3',
+    title: 'GraphQL Fundamentals',
+    description: 'Understanding GraphQL and its benefits',
+    instructor: '',
+    duration: 25,
+    level: 'Intermediate',
+    image: 'https://via.placeholder.com/150'
+  }
+];
+
 // Placeholder components
 const Home = () => (
   <div>
@@ -34,10 +65,15 @@ const About = () => <h2>About Us</h2>;
 // Updated Courses component
 const Courses = () => {
   const [courses, setCourses] = useState([]);
+  const [useTestData, setUseTestData] = useState(true);
 
   useEffect(() => {
-    fetchCourses();
-  }, []);
+    if (useTestData) {
+      setCourses(testCourses);
+    } else {
+      fetchCourses();
+    }
+  }, [useTestData]);
 
   async function fetchCourses() {
     try {
@@ -51,6 +87,9 @@ const Courses = () => {
   return (
     <div className="courses-container">
       <h2>Our Courses</h2>
+      <button onClick={() => setUseTestData(!useTestData)}>
+        {useTestData ? 'Use API Data' : 'Use Test Data'}
+      </button>
       <div className="course-list">
         {courses.map(course => (
           <div key={course.id} className="course-card">
