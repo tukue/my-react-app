@@ -66,6 +66,8 @@ const About = () => <h2>About Us</h2>;
 const Courses = () => {
   const [courses, setCourses] = useState([]);
   const [useTestData, setUseTestData] = useState(true);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (useTestData) {
@@ -76,14 +78,28 @@ const Courses = () => {
   }, [useTestData]);
 
   async function fetchCourses() {
+    setLoading(true);
+    setError(null);
     try {
       const coursesData = await client.models.Course.list();
+      if (!coursesData) {
+        throw new Error('No courses data received');
+      }
       setCourses(coursesData);
     } catch (error) {
       console.error("Error fetching courses", error);
+      setCourses([]);
+      // Show error message to user
+      setError("error of fetching courses. Please try again later."); 
+      // adding test data 
+      setUseTestData(true);
+    } finally {
+      setLoading(false);
     }
   }
-
+ 
+  if(loading) { return <div>Loading...</div>; }
+  if(error) { return <div>Error: {error}</div>; }
   return (
     <div className="courses-container">
       <h2>Our Courses</h2>
