@@ -85,7 +85,7 @@ aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --path
 
 ## Architecture Overview
 
- React application is built using AWS Amplify, providing a scalable and serverless architecture.
+ The React application is built using AWS Amplify, providing a scalable and serverless architecture.
 
  
 ### Key Components:
