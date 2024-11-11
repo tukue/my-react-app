@@ -77,8 +77,10 @@ It provides you with a URL where your app is now accessible
 redeploying application after front end updates: 
 top update hosted web app :
 npm run build
-upload new build to s3 bucket and invalidate cloudfoemation cache
-aws s3 sync build/ s3://your-bucket-name --delete 
+upload new build to s3 bucket and invalidate cloudfoemation cacheaws s3 sync build/ s3://your-bucket-name --delete 
+To get the distribution id of a cloudfront distribution:
+aws cloudfront list-distributions --query "DistributionList.Items[*].{Id:Id,DomainName:DomainName}"
+to update the cloudfront with new frontend
 aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*" 
 
 # React App
