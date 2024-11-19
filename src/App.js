@@ -17,7 +17,7 @@ const testCourses = [
     id: '1',
     title: 'Introduction to React',
     description: 'Learn the basics of React',
-    instructor: 'John Doe',
+    instructor: '',
     duration: 30,
     level: 'Beginner',
     image: 'https://via.placeholder.com/150'
@@ -26,7 +26,7 @@ const testCourses = [
     id: '2',
     title: 'Advanced JavaScript',
     description: 'Deep dive into JavaScript concepts',
-    instructor: 'Jane Smith',
+    instructor: '',
     duration: 45,
     level: 'Advanced',
     image: 'https://via.placeholder.com/150'
@@ -35,7 +35,7 @@ const testCourses = [
     id: '3',
     title: 'GraphQL Fundamentals',
     description: 'Understanding GraphQL and its benefits',
-    instructor: 'Mike Johnson',
+    instructor: '',
     duration: 25,
     level: 'Intermediate',
     image: 'https://via.placeholder.com/150'

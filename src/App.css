@@ -1,272 +1,92 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-header {
   background-color: #282c34;
-  padding: 20px;
+  padding: 1rem;
   color: white;
 }
 
-nav ul {
-  list-style-type: none;
+.App-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.main-nav ul {
+  list-style: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 
-nav ul li {
-  display: inline;
-  margin: 0 10px;
-}
-
-nav ul li a {
+.nav-link {
   color: white;
   text-decoration: none;
-}
-
-main {
-  padding: 20px;
-}
-
-footer {
-  background-color: #282c34;
-  color: white;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-}
-
-/* Courses styles */
-.courses-container {
-  padding: 20px;
-}
-
-.course-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.course-card {
-  width: 300px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.course-card:hover {
-  transform: translateY(-5px);
-}
-
-.course-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.course-info {
-  padding: 15px;
-}
-
-.course-info h3 {
-  margin-top: 0;
-  color: #333;
-}
-
-.course-info p {
-  color: #666;
-  font-size: 14px;
-}
-
-.enroll-button {
-  background-color: #61dafb;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
-.enroll-button:hover {
-  background-color: #21a1c9;
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-  .course-list {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .course-card {
-    width: 100%;
-    max-width: 300px;
-  }
-  .course-image {
-    width: 100%;
-    height: 200px; /* Adjust this value as needed */
-    object-fit: cover;
-  }
-  
-  /* New styles to be added to your existing App.css */
-
-/* Level Badge Styles - New */
-.level {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8em;
-  font-weight: bold;
-  margin-bottom: 10px;
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-.level.Beginner {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-}
-
-.level.Intermediate {
-  background-color: #fff3e0;
-  color: #f57c00;
-}
-
-.level.Advanced {
-  background-color: #fce4ec;
-  color: #c2185b;
-}
-
-/* Instructor Info Section - New */
-.instructor-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 0;
-  padding: 10px 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-}
-
-/* Duration Badge - New */
-.duration-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: #666;
-  font-size: 0.9em;
-}
-
-/* Loading Animation - New */
-@keyframes pulse {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
-.loading {
-  animation: pulse 1.5s infinite;
-}
-
-/* Debug Info Styling - New */
-.debug-info {
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 10px;
-  margin-top: 15px;
-  font-size: 12px;
-  text-align: left;
-}
-
-/* Enhanced Course Card Hover Effect - New */
-.course-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.course-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* Enhanced Button Styles - New */
-.controls button {
-  padding: 8px 16px;
-  border: 2px solid #61dafb;
-  background-color: transparent;
-  color: #282c34;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 500;
-}
-
-.controls button:hover {
-  background-color: #61dafb;
-  color: white;
-}
-
-/* Error Container Enhancement - New */
-.error-container {
-  background-color: #ffebee;
-  border-color: #ffcdd2;
-  padding: 15px;
-  margin: 15px 0;
-  border-radius: 4px;
+.loading-spinner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  height: 50vh;
 }
 
-.error-message {
-  color: #c62828;
-  margin: 0;
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
 }
 
-/* Main Content Area - New */
-main {
-  min-height: calc(100vh - 200px);
-  padding: 20px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* Responsive Enhancements - New */
-@media (max-width: 768px) {
-  .course-list {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    padding: 10px;
-  }
-
-  .controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .controls button {
-    width: 100%;
-  }
-
-  .course-info h3 {
-    font-size: 1.2em;
-  }
-}
-
-/* Footer Enhancement - New */
-footer {
-  background-color: #282c34;
-  color: white;
-  padding: 20px;
-  margin-top: 40px;
+.error-page {
   text-align: center;
+  padding: 2rem;
 }
 
-footer p {
-  margin: 0;
-  font-size: 0.9em;
+.error-page button {
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #0066cc;
+  color: white;
+  cursor: pointer;
 }
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .main-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .App-main {
+    padding: 1rem;
+  }
 }
